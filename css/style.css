@@ -1,0 +1,353 @@
+/* =============================================
+   Dumbbell Chart - CSS Styles
+   Liverpool FC Player Minutes Analysis
+   ============================================= */
+
+/* CSS Variables for consistent theming */
+:root {
+    --primary-color: #c8102e;  /* Liverpool Red */
+    --secondary-color: #00b2a9;
+    --entry-color: #3b82f6;    /* Blue for entry */
+    --exit-color: #ef4444;     /* Red for exit */
+    --line-color: #6366f1;     /* Purple for connecting line */
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a2e 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--primary-color), #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Controls Section */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.control-group label {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.control-group select {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.control-group select:hover {
+    border-color: var(--primary-color);
+}
+
+.control-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.2);
+}
+
+/* Chart Container */
+#chart-container {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    overflow-x: auto;
+}
+
+#chart {
+    min-width: 800px;
+}
+
+/* SVG Styles */
+#chart svg {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Legend */
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.legend-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.entry-dot {
+    background: var(--entry-color);
+}
+
+.exit-dot {
+    background: var(--exit-color);
+}
+
+.legend-line {
+    width: 30px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--entry-color), var(--exit-color));
+    border-radius: 2px;
+}
+
+/* Tooltip */
+.tooltip {
+    position: absolute;
+    background: rgba(30, 41, 59, 0.95);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 0.9rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    max-width: 280px;
+}
+
+.tooltip.visible {
+    opacity: 1;
+}
+
+.tooltip h4 {
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.tooltip p {
+    color: var(--text-secondary);
+    margin: 5px 0;
+    font-size: 0.85rem;
+}
+
+.tooltip .highlight {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.tooltip .entry-text {
+    color: var(--entry-color);
+}
+
+.tooltip .exit-text {
+    color: var(--exit-color);
+}
+
+/* Info Section */
+.info-section {
+    margin-top: 30px;
+    padding: 25px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.info-section h3 {
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.info-section p {
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+.info-section .data-source {
+    font-style: italic;
+    color: #64748b;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* D3 Chart Specific Styles */
+.axis path,
+.axis line {
+    stroke: var(--border-color);
+}
+
+.axis text {
+    fill: var(--text-secondary);
+    font-size: 12px;
+}
+
+.axis-label {
+    fill: var(--text-secondary);
+    font-size: 13px;
+}
+
+.grid line {
+    stroke: var(--border-color);
+    stroke-opacity: 0.3;
+    stroke-dasharray: 3, 3;
+}
+
+.grid path {
+    stroke-width: 0;
+}
+
+.player-label {
+    fill: var(--text-primary);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.player-label:hover {
+    fill: var(--primary-color);
+}
+
+.dumbbell-line {
+    stroke: #6366f1;
+    stroke-width: 4;
+    stroke-linecap: round;
+    cursor: pointer;
+    transition: stroke-width 0.2s ease;
+}
+
+.dumbbell-line:hover {
+    stroke-width: 6;
+}
+
+.entry-circle {
+    fill: #3b82f6;
+    stroke: white;
+    stroke-width: 2;
+    cursor: pointer;
+}
+
+.exit-circle {
+    fill: #ef4444;
+    stroke: white;
+    stroke-width: 2;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+    }
+    
+    header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .control-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .control-group select {
+        flex: 1;
+        max-width: 200px;
+    }
+    
+    .legend {
+        gap: 20px;
+    }
+    
+    #chart-container {
+        padding: 15px;
+    }
+}
+
+/* Animation for chart elements */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chart-element {
+    animation: fadeIn 0.5s ease forwards;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dumbbell Chart - Liverpool FC Player Minutes Analysis</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Load D3.js from CDN -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1>Liverpool FC Player Minutes Analysis</h1>
+            <p class="subtitle">Premier League 2015/16 Season - Dumbbell Chart Visualization</p>
+        </header>
+
+        <!-- Controls Section -->
+        <div class="controls">
+            <div class="control-group">
+                <label for="sortSelect">Sort by:</label>
+                <select id="sortSelect">
+                    <option value="appearances">Appearances (High to Low)</option>
+                    <option value="entry">Entry Time (Early to Late)</option>
+                    <option value="exit">Exit Time (Early to Late)</option>
+                    <option value="minutes">Minutes Played (High to Low)</option>
+                    <option value="name">Player Name (A-Z)</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="filterSelect">Filter by Role:</label>
+                <select id="filterSelect">
+                    <option value="all">All Players</option>
+                    <option value="starters">Mostly Starters (>70% starts)</option>
+                    <option value="rotation">Rotation Players (30-70% starts)</option>
+                    <option value="subs">Mostly Substitutes (<30% starts)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Chart Container -->
+        <div id="chart-container">
+            <div id="chart"></div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <span class="legend-dot entry-dot"></span>
+                <span>Entry Minute (Start)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-dot exit-dot"></span>
+                <span>Exit Minute (End)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-line"></span>
+                <span>Playing Time Duration</span>
+            </div>
+        </div>
+
+        <!-- Tooltip -->
+        <div id="tooltip" class="tooltip"></div>
+
+        <!-- Info Section -->
+        <div class="info-section">
+            <h3>About This Visualization</h3>
+            <p>
+                This dumbbell chart displays the average playing time patterns for Liverpool FC players 
+                during the 2015/16 Premier League season. Each row represents a player, with the blue dot 
+                showing their average entry minute and the red dot showing their average exit minute. 
+                The connecting line represents their typical time on the pitch.
+            </p>
+            <p>
+                <strong>Interactions:</strong> Hover over any element to see detailed statistics. 
+                Use the controls above to sort and filter the data. The chart animates when data changes.
+            </p>
+            <p class="data-source">
+                Data Source: StatsBomb Open Data (20 matches)
+            </p>
+        </div>
+    </div>
+
+    <!-- Load the main script -->
+    <script src="js/script.js"></script>
+</body>
+</html>
