@@ -102,10 +102,10 @@ dumbbell-chart-d3/
 ---
 
 ## Author
-[Your Name]
+Abdullah Nasir
 
 Information Visualization Course  
-[Your University]
+Tu WIEN
 
 ---
 
